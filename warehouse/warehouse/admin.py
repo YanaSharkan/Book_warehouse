@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Book, BookItem, Order, OrderItem, OrderItemBookItem
+from .models import Book, BookItem, Order, OrderItem
 
 
 @admin.register(Book)
@@ -13,7 +13,7 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(BookItem)
 class BookItemAdmin(admin.ModelAdmin):
     list_display = ('id', 'book', 'place')
-    fields = ('book_id', 'place')
+    fields = ('book', 'place')
 
 
 @admin.register(Order)
@@ -24,14 +24,9 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ('id', 'order', 'book_store_id', 'quantity')
-    fields = ('order', 'book_store_id', 'quantity')
+    list_display = ('id', 'order', 'quantity')
+    fields = ('order', 'quantity')
 
-
-@admin.register(OrderItemBookItem)
-class OrderItemBookItemAdmin(admin.ModelAdmin):
-    list_display = ('id', 'order_item', 'book_item')
-    fields = ('order_item', 'book_item')
 
 
 

@@ -90,3 +90,121 @@ h3, h2 {
 .reg ul {
     display: none;
 }
+
+.product {
+    padding: 16px 0;
+    border-bottom: 1px solid #333333;
+}
+
+.product_header {
+    margin-bottom: 16px;
+    font-size: 24px;
+    text-align: left;
+    color: #333333;
+    font-weight: bold;
+}
+
+.product_body {
+    display: flex;
+}
+
+.product_image {
+    width: 500px;
+    background: #dedede;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product_no_image {
+    color: #999999;
+    font-size: 18px;
+}
+
+.product_image img {
+    width: 100%;
+}
+
+.product_description {
+    margin-left: 20px;
+}
+
+.product_price {
+    text-align: right;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    color: blue;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.product_buy {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.product_buy a {
+    background: green;
+    color: #ffffff;
+    border: 0;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    margin-left: 10px;
+    line-height: 16px;
+}
+
+.cart_book {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin-bottom: 20px;
+    background: lightskyblue;
+    border-radius: 8px;
+    color: white;
+    padding: 20px;
+}
+
+.book_price {
+    color: blue;
+}
+
+.book_count {
+    color: green;
+    margin-right: 20px;
+}
+
+.book_action {
+    color: red !important;
+    margin-left: 20px;
+}
+
+.cart_actions {
+    margin-top: 32px;
+    display: flex;
+}
+
+.clean_cart a {
+    display: block;
+    background: red;
+    color: #ffffff;
+    border: 0;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    line-height: 16px;
+}
+
+.complete a {
+display: block;
+    background: green;
+    color: #ffffff;
+    border: 0;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    margin-left: 10px;
+    line-height: 16px;
+}

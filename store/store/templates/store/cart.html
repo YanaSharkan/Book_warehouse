@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+<div class="product">
+    <div class="product_header">
+        <a href="{% url 'store:main' %}">Shop</a> > Shopping cart
+    </div>
+    {% if entries_list|length %}
+        {% for entry in entries_list %}
+        <div class="cart_book">
+            <div class="book_name">
+                <a href="{% url 'store:book' pk=entry.book.id %}">{{ entry.book.title }}</a>
+            </div>
+            <div>
+                <span class="book_count">
+                    {{ entry.quantity }}
+                </span>
+                <span class="book_price">
+                    {{ entry.book.price }}$
+                </span>
+                <a href="{% url 'store:remove_from_cart' pk=entry.id %}" class="book_action">
+                    Delete from cart
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="cart_placeholder">
+            Cart is empty
+        </div>
+    {% endif %}
+</div>
+{% if entries_list|length %}
+<div class="cart_actions">
+    <div class="clean_cart">
+        <a href="{% url 'store:clean_cart' %}">Empty cart</a>
+    </div>
+    <div class="complete">
+        <a href="{% url 'store:complete_order' %}">Complete order</a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

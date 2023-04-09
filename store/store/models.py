@@ -11,6 +11,8 @@ class Book(models.Model):
     quantity = models.IntegerField()
     brief_description = models.CharField(max_length=300, null=True)
     description = models.TextField(null=True)
+    warehouse_id = models.IntegerField(null=False)
+    image = models.ImageField(upload_to='img/', null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -29,6 +31,7 @@ class Order(models.Model):
         blank=True,
         default='c',
     )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     delivery_address = models.CharField(max_length=250)
 
     def __str__(self):
@@ -42,3 +45,15 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
+    delivery_address = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.user

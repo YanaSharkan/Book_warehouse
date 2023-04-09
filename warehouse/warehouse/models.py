@@ -32,7 +32,7 @@ class Order(models.Model):
         blank=True,
         default='w',
     )
-    delivery_address = models.CharField(max_length=200)
+    delivery_address = models.CharField(max_length=250)
     order_id_in_shop = models.IntegerField()
 
     def __str__(self):
@@ -40,17 +40,9 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    book_store_id = models.IntegerField()
     quantity = models.IntegerField()
-
-    def __str__(self):
-        return str(self.id)
-
-
-class OrderItemBookItem(models.Model):
-    order_item = models.ForeignKey(OrderItem, on_delete=models.CASCADE)
-    book_item = models.ForeignKey(BookItem, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.id)

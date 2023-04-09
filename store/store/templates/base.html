@@ -8,9 +8,11 @@
 <body>
     <div class="main">
         <header>
-            <h1>Store</h1>
+            <h1><a href="{% url 'store:main' %}">Store</a></h1>
             <div>
                 {% if user.is_authenticated %}
+                    <a href="{% url 'store:update_profile' %}">Update profile</a>
+                    <a href="{% url 'store:cart' %}">Shopping Cart</a>
                     <a href="{% url 'store:logout' %}">Logout</a>
                 {% else %}
                     <a href="{% url 'store:login' %}">Login</a>

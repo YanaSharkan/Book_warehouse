@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Book, BookItem, Order, OrderItem, OrderItemBookItem
+from .models import Book, BookItem, Order, OrderItem
 
 
 # Serializers define the API representation.
@@ -30,17 +30,7 @@ class OrderViewSetSerializer(serializers.ModelSerializer):
 
 
 class OrderItemViewSetSerializer(serializers.ModelSerializer):
-    order = OrderViewSetSerializer(read_only=True)
-
     class Meta:
         model = OrderItem
-        fields = ['id', 'order', 'book_store_id', 'quantity']
+        fields = ['id', 'book', 'order', 'quantity']
 
-
-class OrderItemBookItemViewSetSerializer(serializers.ModelSerializer):
-    order_item = OrderItemViewSetSerializer(read_only=True)
-    book_item = BookItemViewSetSerializer(read_only=True)
-
-    class Meta:
-        model = OrderItemBookItem
-        fields = ['id', 'order_item', 'book_item']

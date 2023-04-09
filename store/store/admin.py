@@ -5,8 +5,8 @@ from .models import Book, Order, OrderItem
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'price', 'quantity', 'brief_description', 'description')
-    fields = ('title', 'price', 'quantity', 'brief_description', 'description')
+    list_display = ('id', 'title', 'price', 'quantity', 'brief_description', 'description', 'warehouse_id', 'image')
+    fields = ('title', 'price', 'quantity', 'brief_description', 'description', 'warehouse_id', 'image')
 
 
 @admin.register(Order)
@@ -19,5 +19,4 @@ class OrderAdmin(admin.ModelAdmin):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'order', 'book', 'quantity')
     fields = ('order', 'book', 'quantity')
-
 
