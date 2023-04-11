@@ -35,7 +35,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -126,7 +126,7 @@ TIME_ZONE = 'Europe/Kiev'
 
 # Celery
 
-CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = env('CELERY_URL')
 CELERY_TIMEZONE = TIME_ZONE
 
 USE_I18N = True
