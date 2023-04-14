@@ -10,10 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+from pathlib import Path
+
+from django.core.management.commands.runserver import Command as Runserver
+
 import environ
 
-from pathlib import Path
-from django.core.management.commands.runserver import Command as Runserver
 
 Runserver.default_port = "8001"
 
@@ -38,6 +40,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:3000', 'http://warehouse.com:3000']
 
 # Application definition
 

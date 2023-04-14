@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
-import environ
-
 from pathlib import Path
+
 from django.core.management.commands.runserver import Command as Runserver
+
+import environ
 
 Runserver.default_port = "8000"
 
@@ -36,6 +37,8 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:3000', 'http://store.com:3000']
 
 
 # Application definition
@@ -81,6 +84,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mailhog'
+EMAIL_PORT = 1025
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

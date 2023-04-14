@@ -1,7 +1,7 @@
 from rest_framework import viewsets
-from .serializers import BookViewSetSerializer, BookItemViewSetSerializer, OrderViewSetSerializer, OrderItemViewSetSerializer
 
 from .models import Book, BookItem, Order, OrderItem
+from .serializers import BookItemViewSetSerializer, BookViewSetSerializer, OrderItemViewSetSerializer, OrderViewSetSerializer
 
 
 class BookViewSet(viewsets.ModelViewSet):
@@ -22,5 +22,3 @@ class OrderViewSet(viewsets.ModelViewSet):
 class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = OrderItem.objects.select_related('order').all()
     serializer_class = OrderItemViewSetSerializer
-
-

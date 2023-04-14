@@ -16,7 +16,6 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 @admin.register(OrderItem)
-class OrderAdmin(admin.ModelAdmin):
+class OrderItemAdmin(admin.ModelAdmin):
     list_display = ('id', 'order', 'book', 'quantity')
     fields = ('order', 'book', 'quantity')
-

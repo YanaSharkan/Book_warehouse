@@ -1,19 +1,17 @@
-import json
-import requests
+from django.contrib import messages
+from django.contrib.auth import authenticate, get_user_model, login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views import generic
 
 from store.forms import RegisterForm
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import authenticate, login
-from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib import messages
-
-from django.conf import settings
-from django.urls import reverse_lazy
-from django.shortcuts import redirect
-from django.views import generic
-
 from .models import Book, Order, OrderItem, Profile
+from .tasks import send_order_created
+
+User = get_user_model()
 
 
 class MainView(generic.ListView):
@@ -52,6 +50,8 @@ class BookDetailsView(generic.DetailView):
 def add_to_cart(request, pk):
     if request.user.is_anonymous:
         return redirect(reverse_lazy('store:login'))
+    if not request.user.profile:
+        return redirect(reverse_lazy('store:update_profile'))
     book = Book.objects.get(id=pk)
     try:
         cart_order = Order.objects.get(user=request.user, status='c')
@@ -94,6 +94,8 @@ def complete_order(request):
     cart_order = Order.objects.get(user=request.user, status='c')
     cart_order.status = 'o'
     cart_order.save()
+    superusers_emails = User.objects.filter(is_superuser=True).values_list('email').first()
+    send_order_created.apply_async((superusers_emails, request.user.email))
     messages.add_message(request, messages.SUCCESS, 'Order created!')
     return redirect(reverse_lazy('store:cart'))
 

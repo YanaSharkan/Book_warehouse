@@ -33,4 +33,3 @@ class OrderItemViewSetSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = ['id', 'book', 'order', 'quantity']
-

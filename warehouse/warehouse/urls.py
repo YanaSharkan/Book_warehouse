@@ -1,7 +1,9 @@
-from django.urls import include, path
 from django.contrib import admin
+from django.urls import include, path
+
 from rest_framework import routers
-from .views import BookViewSet, BookItemViewSet, OrderViewSet, OrderItemViewSet
+
+from .views import BookItemViewSet, BookViewSet, OrderItemViewSet, OrderViewSet
 
 
 router = routers.DefaultRouter()

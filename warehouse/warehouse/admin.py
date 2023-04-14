@@ -26,7 +26,3 @@ class OrderAdmin(admin.ModelAdmin):
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ('id', 'order', 'quantity')
     fields = ('order', 'quantity')
-
-
-
-
